@@ -1,21 +1,22 @@
-import React from "react";
-import CategoryFilter from "./CategoryFilter";
-import NewTaskForm from "./NewTaskForm";
-import TaskList from "./TaskList";
-
-import { CATEGORIES, TASKS } from "../data";
-console.log("Here's the data you're working with");
-console.log({ CATEGORIES, TASKS });
+import React, { useState } from "react";
+import ShoppingList from "./ShoppingList";
+import itemData from "../data/items";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const appClass = isDarkMode ? "App dark" : "App light";
+
+  function isLit() {
+    setIsDarkMode(!isDarkMode)
+  }
   return (
-    <div className="App">
-      <h2>My tasks</h2>
-      <CategoryFilter />
-      <NewTaskForm />
-      <TaskList />
+    <div className={appClass}>
+      <header>
+        <h2>Shopster</h2>
+        <button onClick={isLit}>Dark Mode</button>
+      </header>
+      <ShoppingList items={itemData} />
     </div>
   );
 }
-
 export default App;
